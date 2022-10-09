@@ -25,8 +25,8 @@ class CadastrarAulaAPIView(APIView):
 
         if serializer.is_valid():
             aula = Aula(
-                nome=serializer.validated_data.get('nome'),
-                email=serializer.validated_data.get('email'),
+                nome=serializer.validated_data.get("nome"),
+                email=serializer.validated_data.get("email"),
                 professor=professor
             )
             aula.save()

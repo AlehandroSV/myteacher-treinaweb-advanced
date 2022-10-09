@@ -6,7 +6,7 @@ from teacher.models import Professor, Aula
 class ProfessorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Professor
-        fields = 'all'
+        fields = '__all__'
 
 
 class CadastrarAulaSerialazer(serializers.Serializer):
@@ -17,4 +17,4 @@ class CadastrarAulaSerialazer(serializers.Serializer):
 class AulaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Aula
-        fields = 'all'
+        fields = '__all__'
