@@ -1,7 +1,7 @@
 export interface Teacher {
   id: number;
-  name: string;
-  description: string;
-  value_hours: number;
-  img: string;
+  nome: string;
+  descricao: string;
+  valor_hora: number;
+  foto: string;
 }

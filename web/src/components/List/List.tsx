@@ -1,5 +1,6 @@
 import { Button } from "@mui/material";
 import { Teacher } from "../../@types/Teacher";
+import { FormatadorService } from "../../services/FormatadorService";
 import {
   DescriptionList,
   EmptyList,
@@ -13,6 +14,7 @@ import {
 
 interface ListProps {
   teachers: Teacher[];
+  onSelect: (professor: Teacher) => void;
 }
 
 const List = (props: ListProps) => {
@@ -22,20 +24,23 @@ const List = (props: ListProps) => {
         <ListStyled>
           {props.teachers.map((teacher) => (
             <ItemList key={teacher.id}>
-              <ImgList src={teacher.img}></ImgList>
+              <ImgList src={teacher.foto}></ImgList>
               <InfosList>
-                <NameList>{teacher.name}</NameList>
+                <NameList>{teacher.nome}</NameList>
                 <ValueList>
-                  {teacher.value_hours.toLocaleString("pt-BR", {
-                    minimumFractionDigits: 2,
-                    style: "currency",
-                    currency: "BRL",
-                  })}{" "}
-                  | Por Hora
+                  {FormatadorService.valorMonetario(teacher.valor_hora)} | Por
+                  Hora
                 </ValueList>
-                <DescriptionList>{teacher.description}</DescriptionList>
-                <Button sx={{ width: "70%" }}>
-                  Marcar aula com {teacher.name}
+                <DescriptionList>
+                  {FormatadorService.limitarTexto(teacher.descricao, 200)}
+                </DescriptionList>
+                <Button
+                  sx={{ width: "70%" }}
+                  onClick={() => {
+                    props.onSelect(teacher);
+                  }}
+                >
+                  Marcar aula com {teacher.nome}
                 </Button>
               </InfosList>
             </ItemList>
